@@ -5,7 +5,7 @@
     'summary': """Allow users to pay by check and to record details about the check paid
  directly from the user interface""",
     'category': 'Point Of Sale',
-    'license': 'MIT',
+    'license': 'LGPL-3',
     'author': "Mplus Software",
     'website': "http://mplus.software",
     'depends': ['point_of_sale'],
