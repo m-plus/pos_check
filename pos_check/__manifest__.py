@@ -15,6 +15,9 @@
         'views/account_journal_view.xml',
         'views/pos_order_view.xml',
     ],
+    'images': [
+        'static/description/app.png'
+    ],
     'installable': True,
     'application': True,
     'qweb': ['static/src/xml/pos_check.xml'],
