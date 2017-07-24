@@ -12,6 +12,7 @@
     'data': [
         'wizard/pos_payment.xml',
         'views/pos_check.xml',
+        'views/pos_check_view.xml',
         'views/account_journal_view.xml',
         'views/pos_order_view.xml',
     ],
