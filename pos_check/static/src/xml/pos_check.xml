@@ -28,28 +28,28 @@
         <div class='modal-dialog'>
             <div class='popup popup-checkinfo'>
                 <p class='title'>Please enter check info</p>
-                <div class='checkinfo-detail'>
+                <div class='checkinfo-detail' t-if="widget.options.config_check and widget.options.config_check.bank_visible">
                     <span class='label'>Bank name</span>
                     <select name='check_bank_id' class='detail'>
                         <option value=''>---</option>
                         <t t-foreach='widget.pos.banks' t-as='bank'>
-                            <option t-att-value='bank.id' t-att-selected='bank.id === widget.options.check_bank_id ? true : undefined'> 
+                            <option t-att-value='bank.id' t-att-selected='widget.options.data and bank.id === widget.options.data.check_bank_id ? true : undefined'> 
                                 <t t-esc='bank.name'/>
                             </option>
                         </t>
                     </select>
                 </div>
-                <div class='checkinfo-detail'>
+                <div class='checkinfo-detail' t-if="widget.options.config_check and widget.options.config_check.bank_acc_visible">
                     <span class='label'>Bank account</span>
-                    <input class='detail' name='check_bank_acc' t-att-value='widget.options.check_bank_acc' placeholder='Bank account'></input>
+                    <input class='detail' name='check_bank_acc' t-att-value='widget.options.data ? widget.options.data.check_bank_acc : undefined' placeholder='Bank account'></input>
                 </div>
                 <div class='checkinfo-detail'>
                     <span class='label'>Check number</span>
-                    <input class='detail' name='check_number' t-att-value='widget.options.check_number' placeholder='Check number'></input>
+                    <input class='detail' name='check_number' t-att-value='widget.options.data ? widget.options.data.check_number : undefined' placeholder='Check number'></input>
                 </div>
-                <div class='checkinfo-detail'>
+                <div class='checkinfo-detail' t-if="widget.options.config_check and widget.options.config_check.owner_visible">
                     <span class='label'>Check owner</span>
-                    <input class='detail' name='check_owner' t-att-value='widget.options.check_owner' placeholder='Check owner'></input>
+                    <input class='detail' name='check_owner' t-att-value='widget.options.data ? widget.options.data.check_owner : undefined' placeholder='Check owner'></input>
                 </div>
                 <div class='footer'>
                     <div class='button confirm'>

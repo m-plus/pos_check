@@ -3,8 +3,9 @@ odoo.define('pos_check.models', function (require) {
 
 var models = require('point_of_sale.models');
 
-//load new field 'check_info_required'
-models.load_fields("account.journal", "check_info_required");
+//load new field 'check_info_required', etc
+models.load_fields("account.journal", ['check_info_required', 'check_auto_fill_amount', 'check_bank_name_visible',
+'check_bank_name_required', 'check_bank_acc_visible', 'check_bank_acc_required', 'check_owner_visible', 'check_owner_required']);
 
 //load model res.bank
 models.load_models({
@@ -41,7 +42,7 @@ models.Order = models.Order.extend({
         this.assert_editable();
         var newPaymentline = new models.Paymentline({},{order: this, cashregister:cashregister, pos: this.pos});
         $.extend(newPaymentline, infos);
-        if(cashregister.journal.type !== 'cash' || this.pos.config.iface_precompute_cash){
+        if(cashregister.journal.type !== 'cash' || this.pos.config.iface_precompute_cash || cashregister.journal.check_auto_fill_amount){
             newPaymentline.set_amount( Math.max(this.get_due(),0) );
         }
         this.paymentlines.add(newPaymentline);

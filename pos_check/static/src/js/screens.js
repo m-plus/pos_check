@@ -10,15 +10,16 @@ screens.PaymentScreenWidget.include({
         window.document.body.removeEventListener('keydown', self.keyboard_keydown_handler);
         this.gui.show_popup('check-info-input',{
             data: options.data,
+            config_check: options.config_check,
             validate_info: function(infos){
                 this.$('input').removeClass('error');
                 this.$('select').removeClass('error');
-                if(!infos.check_bank_id) {
+                if(this.options.config_check.bank_required && !infos.check_bank_id) {
                     this.$('select[name=check_bank_id]').addClass('error');
                     this.$('select[name=check_bank_id]').focus();
                     return false;
                 }
-                if(!infos.check_bank_acc) {
+                if(this.options.config_check.bank_acc_required && !infos.check_bank_acc) {
                     this.$('input[name=check_bank_acc]').addClass('error');
                     this.$('input[name=check_bank_acc]').focus();
                     return false;
@@ -28,7 +29,7 @@ screens.PaymentScreenWidget.include({
                     this.$('input[name=check_number]').focus();
                     return false;
                 }
-                if(!infos.check_owner) {
+                if(this.options.config_check.owner_required && !infos.check_owner) {
                     this.$('input[name=check_owner]').addClass('error');
                     this.$('input[name=check_owner]').focus();
                     return false;
@@ -59,6 +60,15 @@ screens.PaymentScreenWidget.include({
         }
         if (cashregister.journal.check_info_required) {
             this.show_popup_check_info({
+                config_check: {
+                    'bank_visible': cashregister.journal.check_bank_name_visible,
+                    'bank_required': cashregister.journal.check_bank_name_required,
+                    'bank_acc_visible': cashregister.journal.check_bank_acc_visible,
+                    'bank_acc_required': cashregister.journal.check_bank_acc_required,
+                    'owner_visible': cashregister.journal.check_owner_visible,
+                    'owner_required': cashregister.journal.check_owner_required
+                },
+                data: {},
                 confirm: function(infos) {
                     //merge infos to new paymentline
                     self.pos.get_order().add_paymentline_with_check(cashregister, infos);
@@ -100,7 +110,16 @@ screens.PaymentScreenWidget.include({
         var lines = this.pos.get_order().get_paymentlines();
         for ( var i = 0; i < lines.length; i++ ) {
             if (lines[i].cid === cid) {
+                var cashregister = lines[i].cashregister;
                 this.show_popup_check_info({
+                    config_check: {
+                        'bank_visible': cashregister.journal.check_bank_name_visible,
+                        'bank_required': cashregister.journal.check_bank_name_required,
+                        'bank_acc_visible': cashregister.journal.check_bank_acc_visible,
+                        'bank_acc_required': cashregister.journal.check_bank_acc_required,
+                        'owner_visible': cashregister.journal.check_owner_visible,
+                        'owner_required': cashregister.journal.check_owner_required
+                    },
                     data: lines[i],
                     confirm: function(infos) {
                         //merge infos to updated paymentline
