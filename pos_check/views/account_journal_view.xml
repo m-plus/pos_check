@@ -20,7 +20,7 @@
                         <label for="check_bank_name_required" string="Required"/>
                     </div>
                 </div>
-                <label for="id" string="Bank name" attrs="{'invisible':[('check_info_required','=',False)]}"/>
+                <label for="id" string="Bank account" attrs="{'invisible':[('check_info_required','=',False)]}"/>
                 <div colspan="3" attrs="{'invisible':[('check_info_required','=',False)]}">
                     <div>
                         <field name="check_bank_acc_visible" class="oe_inline"/>
@@ -31,7 +31,7 @@
                         <label for="check_bank_acc_required" string="Required"/>
                     </div>
                 </div>
-                <label for="id" string="Bank name" attrs="{'invisible':[('check_info_required','=',False)]}"/>
+                <label for="id" string="Check Owner" attrs="{'invisible':[('check_info_required','=',False)]}"/>
                 <div colspan="3" attrs="{'invisible':[('check_info_required','=',False)]}">
                     <div>
                         <field name="check_owner_visible" class="oe_inline"/>
