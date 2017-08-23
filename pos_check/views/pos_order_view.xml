@@ -7,10 +7,16 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='statement_ids']/tree" position="inside">
                 <field name="check_info_required" invisible="1"/>
-                <field name="check_bank_id" attrs="{'required':[('check_info_required','=',True)]}" />
-                <field name="check_bank_acc" attrs="{'required':[('check_info_required','=',True)]}" />
-                <field name="check_number" attrs="{'required':[('check_info_required','=',True)]}" />
-                <field name="check_owner" attrs="{'required':[('check_info_required','=',True)]}" />
+                <field name="check_bank_name_visible" invisible="1"/>
+                <field name="check_bank_name_required" invisible="1"/>
+                <field name="check_bank_acc_visible" invisible="1"/>
+                <field name="check_bank_acc_required" invisible="1"/>
+                <field name="check_owner_visible" invisible="1"/>
+                <field name="check_owner_required" invisible="1"/>
+                <field name="check_bank_id" attrs="{'readonly':['|',('check_info_required','=',False),('check_bank_name_visible','=',False)], 'required':[('check_info_required','=',True),('check_bank_name_required','=',True)]}" />
+                <field name="check_bank_acc" attrs="{'readonly':['|',('check_info_required','=',False),('check_bank_acc_visible','=',False)], 'required':[('check_info_required','=',True),('check_bank_acc_required','=',True)]}" />
+                <field name="check_number" attrs="{'readonly':[('check_info_required','=',False)], 'required':[('check_info_required','=',True)]}" />
+                <field name="check_owner" attrs="{'readonly':['|',('check_info_required','=',False),('check_owner_visible','=',False)], 'required':[('check_info_required','=',True),('check_owner_required','=',True)]}" />
             </xpath>
         </field>
     </record>
