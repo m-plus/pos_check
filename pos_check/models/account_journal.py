@@ -17,7 +17,6 @@ class AccountJournal(models.Model):
     @api.onchange('check_bank_name_visible', 'check_bank_name_required', 'check_bank_acc_visible',
     'check_bank_acc_required', 'check_owner_visible', 'check_owner_required')
     def _onchange_check_visible_and_required(self):
-        print self.check_bank_name_visible, self.check_bank_name_required
         if not self.check_bank_name_visible and self.check_bank_name_required:
             self.check_bank_name_required = False
         if not self.check_bank_acc_visible and self.check_bank_acc_required:
