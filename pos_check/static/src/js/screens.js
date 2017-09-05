@@ -142,4 +142,5 @@ screens.PaymentScreenWidget.include({
 
 });
 
+return screens;
 });
