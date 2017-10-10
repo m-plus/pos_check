@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'POS Check',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'summary': """Allow users to pay by check and to record details about the check paid
  directly from the user interface""",
     'category': 'Point Of Sale',
