@@ -34,5 +34,9 @@ var CheckInfoWidget = PopupWidget.extend({
 });
 gui.define_popup({name:'check-info-input', widget: CheckInfoWidget});
 
-return PopupWidget;
+
+return {
+    PopupWidget: PopupWidget,
+    CheckInfoWidget: CheckInfoWidget,
+};
 });
