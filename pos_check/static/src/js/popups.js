@@ -12,13 +12,17 @@ var CheckInfoWidget = PopupWidget.extend({
         this.renderElement();
         this.$('.popup-checkinfo .detail')[0].focus()
     },
-    click_confirm: function(){
-        var infos = {
+    get_infos: function() {
+        return {
             'check_bank_id' : parseInt(this.$('select[name=check_bank_id]').val()) || undefined,
             'check_bank_acc': this.$('input[name=check_bank_acc]').val(),
             'check_number'  : this.$('input[name=check_number]').val(),
             'check_owner'   : this.$('input[name=check_owner]').val(),
         };
+    },
+    click_confirm: function(){
+
+        var infos = this.get_infos();
         var valid = true;
         if(this.options.validate_info){
             valid = this.options.validate_info.call(this, infos);
